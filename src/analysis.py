@@ -28,7 +28,7 @@ from sklearn.ensemble import RandomForestClassifier
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "historical_automobile_sales.csv"
 OUT = ROOT / "outputs"
-FIG = OUT / "figures"
+FIG = ROOT / "visualizations"
 OUT.mkdir(exist_ok=True)
 FIG.mkdir(parents=True, exist_ok=True)
 sns.set_theme(style="whitegrid", context="notebook")
@@ -139,7 +139,7 @@ def build_folium_map(df):
             tooltip=state, color="#2457A7", fill=True, fill_opacity=.65
         ).add_to(cluster)
     folium.LayerControl().add_to(m)
-    m.save(str(OUT / "automobile_sales_by_state.html"))
+    m.save(str(FIG / "automobile_sales_by_state.html"))
 
 
 def train_classifiers(df):
