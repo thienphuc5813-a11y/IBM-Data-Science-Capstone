@@ -124,7 +124,7 @@ for filename, title in [
     ("vehicle_type_recession.png","Sales by vehicle type"),
     ("confusion_matrix.png","Confusion matrix")
 ]:
-    image_path = OUT / "figures" / filename
+    image_path = ROOT / "visualizations" / filename
     if image_path.exists():
         story.append(Paragraph(title, styles["Heading3"]))
         story.append(Image(str(image_path), width=430, height=220))
