@@ -1,0 +1,30 @@
+name: SpaceX Capstone
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "spacex/**"
+      - ".github/workflows/spacex-capstone.yml"
+      - "README.md"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r spacex/requirements.txt
+      - name: Run SpaceX analysis
+        run: python spacex/analysis.py
+      - name: Build presentation PDF
+        run: python spacex/build_presentation.py
+      - name: Upload SpaceX capstone deliverables
+        uses: actions/upload-artifact@v4
+        with:
+          name: spacex-capstone-deliverables
+          path: |
+            spacex/Capstone_Presentation.pdf
+            spacex/outputs/
+          if-no-files-found: error
