@@ -1,0 +1,38 @@
+name: Build and validate capstone
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run analysis pipeline
+        run: python src/analysis.py
+      - name: Build presentation
+        run: python presentation/build_presentation.py
+      - name: Run data tests
+        run: pytest -q
+      - name: Upload generated project outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: capstone-generated-results
+          path: |
+            outputs/
+            visualizations/
+            presentation/Capstone_Presentation.pptx
+            presentation/Capstone_Presentation.pdf
