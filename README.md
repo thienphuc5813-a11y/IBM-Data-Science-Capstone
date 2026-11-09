@@ -36,7 +36,7 @@ pip install -r requirements.txt
 python src/analysis.py
 ```
 
-The pipeline creates cleaned data, EDA charts, SQLite query exports, a Folium HTML map, model metrics and a JSON summary under `outputs/`.
+The pipeline creates cleaned data, EDA charts and a Folium HTML map under `visualizations/`, plus SQLite query exports, model metrics and a JSON summary under `outputs/`.
 
 ## Run the dashboard
 
