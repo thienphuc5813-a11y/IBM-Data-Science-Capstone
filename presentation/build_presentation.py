@@ -83,7 +83,7 @@ for filename, title in [
     ("vehicle_type_recession.png","Vehicle categories"),
     ("confusion_matrix.png","Classification confusion matrix")
 ]:
-    image_path = OUT / "figures" / filename
+    image_path = ROOT / "visualizations" / filename
     if image_path.exists():
         slide = prs.slides.add_slide(prs.slide_layouts[5])
         slide.shapes.title.text = title
