@@ -34,7 +34,12 @@ GROUP BY City
 ORDER BY total_sales DESC;
 
 -- 6. Month-of-year seasonality
-SELECT CAST(strftime('%m', Date) AS INTEGER) AS month_num,
+SELECT CASE Month
+         WHEN 'Jan' THEN 1 WHEN 'Feb' THEN 2 WHEN 'Mar' THEN 3
+         WHEN 'Apr' THEN 4 WHEN 'May' THEN 5 WHEN 'Jun' THEN 6
+         WHEN 'Jul' THEN 7 WHEN 'Aug' THEN 8 WHEN 'Sep' THEN 9
+         WHEN 'Oct' THEN 10 WHEN 'Nov' THEN 11 WHEN 'Dec' THEN 12
+       END AS month_num,
        ROUND(AVG(Automobile_Sales), 2) AS avg_sales
 FROM automobile_sales
 GROUP BY month_num
