@@ -89,7 +89,7 @@ def main():
       "landing, following the prepared capstone dataset's definition.")
     story.append(PageBreak())
 
-    p("3. Data Collection & Wrangling","H")
+    p("3. Data Collection &amp; Wrangling","H")
     p("The analysis loads the IBM Skills Network Falcon 9 capstone dataset, with a public GitHub mirror as a "
       "fallback. The course dataset consolidates historical launch information derived from SpaceX launch records "
       "and course web-scraping work. The source URL used for this run is:")
@@ -119,7 +119,7 @@ def main():
     img("payload_outcomes.png",22*cm,12*cm)
     story.append(PageBreak())
 
-    p("6. Launch Site & SQL Insights","H")
+    p("6. Launch Site &amp; SQL Insights","H")
     p("SQL analysis is executed with SQLite over the cleaned launch table. Queries calculate overall landing "
       "success, success rate by launch site and orbit, and average payload mass by outcome.")
     rows=[["LAUNCH SITE","LAUNCHES","SUCCESS RATE (%)"]]
