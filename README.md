@@ -48,13 +48,17 @@ Open the local URL printed by Dash (usually http://127.0.0.1:8050).
 
 ## Build the presentation
 
-After running the analysis pipeline:
+Run this from the repository root:
 
 ```bash
 python presentation/build_presentation.py
 ```
 
-This creates `presentation/Capstone_Presentation.pptx`. Export it to PDF using PowerPoint or LibreOffice.
+If the analysis outputs do not exist yet, the builder automatically runs `src/analysis.py` first. It then creates:
+- `presentation/Capstone_Presentation.pptx`
+- `presentation/Capstone_Presentation.pdf`
+
+Install dependencies first with `pip install -r requirements.txt`.
 
 ## Analysis workflow
 
