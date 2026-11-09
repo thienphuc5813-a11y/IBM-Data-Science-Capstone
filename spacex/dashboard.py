@@ -36,8 +36,7 @@ def update(site, payload):
         d = d[d["LaunchSite"] == site]
     n = len(d)
     rate = d["Class"].mean() * 100 if n else 0
-    pie = px.pie(d, names="Landing outcome", title="Landing outcomes",
-                 hole=.35) if n else px.pie(title="No launches in this selection")
+    pie = px.pie(title="No launches in this selection")
     if n:
         d["Landing outcome"] = d["Class"].map({1: "Successful", 0: "Unsuccessful"})
         pie = px.pie(d, names="Landing outcome", title="Landing outcomes", hole=.35)
