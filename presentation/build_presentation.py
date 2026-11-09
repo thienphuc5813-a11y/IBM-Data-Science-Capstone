@@ -3,6 +3,8 @@ Run: python presentation/build_presentation.py
 """
 from pathlib import Path
 import json
+import subprocess
+import sys
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from reportlab.lib import colors
@@ -13,8 +15,22 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Page
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs"
 SUMMARY = OUT / "project_summary.json"
+
+# Tự chạy pipeline phân tích nếu người dùng chưa tạo outputs/project_summary.json.
+# Nhờ vậy có thể chạy trực tiếp file này trong VS Code từ thư mục project.
 if not SUMMARY.exists():
-    raise FileNotFoundError("Run 'python src/analysis.py' before building the presentation.")
+    print("Chưa có dữ liệu phân tích. Đang tự chạy src/analysis.py...")
+    subprocess.run(
+        [sys.executable, str(ROOT / "src" / "analysis.py")],
+        cwd=ROOT,
+        check=True
+    )
+
+if not SUMMARY.exists():
+    raise FileNotFoundError(
+        "Analysis pipeline finished but outputs/project_summary.json was not created."
+    )
+
 summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
 models = summary["model_results"]
 
